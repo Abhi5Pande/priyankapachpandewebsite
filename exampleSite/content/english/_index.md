@@ -1,7 +1,7 @@
 ---
 # banner
 banner:
-  title : "Hi! I’m <br> Christoher <br> UX designer"
+  title : "Hi! I’m <br> Priyanka <br> Illustrator"
 
 # about
 about:
@@ -14,7 +14,7 @@ about:
 
 # skill
 skill:
-  enable : true
+  enable : false
   title : "Skills"
   item:
     - title : "Web Design"
@@ -35,7 +35,7 @@ skill:
 
 # experience
 experience:
-  enable : true
+  enable : false
   title : "Experience"
   item: 
     - logo : "images/experience/icon-1.png"
@@ -94,6 +94,12 @@ service:
       content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       highlighted : false
 
+    - title : "Interaction Design"
+      icon : "ti-panel"
+      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      highlighted : false
+
+
 # portfolio
 portfolio:
   enable : true
@@ -123,41 +129,27 @@ testimonial:
 
 # client logo slider
 clients_logo_slider:
-  enable : true
+  enable : false
   item:
-    - logo : "images/clients-logo/client-logo-1.png"
+    - logo : "images/clients-logo/netflix.png"
       URL : "http://examplesite.com"
       
-    - logo : "images/clients-logo/client-logo-2.png"
-      URL : "#"
-      
-    - logo : "images/clients-logo/client-logo-3.png"
-      URL : "http://examplesite.com"
-      
-    - logo : "images/clients-logo/client-logo-4.png"
-      URL : "#"
-      
-    - logo : "images/clients-logo/client-logo-5.png"
-      URL : "http://examplesite.com"
-      
-    - logo : "images/clients-logo/client-logo-1.png"
-      URL : "#"
-      
-    - logo : "images/clients-logo/client-logo-2.png"
-      URL : "http://examplesite.com"
-      
-    - logo : "images/clients-logo/client-logo-3.png"
-      URL : "#"
-      
-    - logo : "images/clients-logo/client-logo-4.png"
-      URL : "http://examplesite.com"
-      
-    - logo : "images/clients-logo/client-logo-5.png"
-      URL : "#"
 
 # blog
 blog:
   enable : true
   title : "Blogs"
   # blog post comes from "content/blog" folder
+
+
+footer_links:
+  enable : true
+  item:
+    - display : "Times Of India"
+      URL : "http://examplesite.com"
+      
+    - display : "Chamki And Co"
+      URL : "https://chamkiandco.com/"
+ 
+      
 ---

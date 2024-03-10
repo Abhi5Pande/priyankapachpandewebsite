@@ -1,10 +1,10 @@
 ---
 title: "Artwork Design"
 date: 2019-05-12T12:14:34+06:00
-image: "images/portfolio/item-1.png"
+image: "images/blog/post-1.jpg"
 client: "John Doe"
 project_url : "https://themefisher.com/"
-categories: ["branding"]
+categories: ["Chamki And Co"]
 description: "This is meta description."
 draft: false
 ---

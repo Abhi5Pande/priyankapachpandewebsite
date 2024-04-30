@@ -1,11 +1,12 @@
 ---
+
 # banner
 banner:
   title : "Hi! I’m <br> Priyanka <br> Illustrator"
 
 # about
 about:
-  enable : true
+  enable : false
   content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
   button:
     enable : true
@@ -55,7 +56,7 @@ experience:
 
 # education
 education:
-  enable : true
+  enable : false
   title : "Education"
   item:
     - title : "Marters in UX Design"
@@ -76,7 +77,7 @@ education:
 
 # service
 service:
-  enable : true
+  enable : false
   title : "Services"
   item:
     - title : "UI Design"
@@ -129,7 +130,7 @@ testimonial:
 
 # client logo slider
 clients_logo_slider:
-  enable : false
+  enable : true
   item:
     - logo : "images/clients-logo/netflix.png"
       URL : "http://examplesite.com"
@@ -137,7 +138,7 @@ clients_logo_slider:
 
 # blog
 blog:
-  enable : true
+  enable : false
   title : "Blogs"
   # blog post comes from "content/blog" folder
 

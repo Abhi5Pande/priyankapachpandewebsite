@@ -10,7 +10,13 @@
       padding: 5px 20px;
     }
   }
+  &.nav-no-display {
+    display: none;
+  }
 
+  &.nav-block-display {
+    display: block;
+  }
   @include desktop {
     padding: 20px;
     background: $color-primary;
@@ -18,6 +24,13 @@
 }
 
 .navbar {
+  .no-display{
+    display: none;
+  }
+  .block-display{
+    display: block;
+  }
+
   .nav-item {
     a.nav-link {
       font-family: $font-secondary;

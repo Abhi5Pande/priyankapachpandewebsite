@@ -8,9 +8,20 @@
 		var navigation = document.querySelector('.navigation');
 		if (this.document.documentElement.scrollTop > 100) {
 			navigation.classList.add('nav-bg');
+			navigation.classList.remove('d-none');
 		} else {
 			navigation.classList.remove('nav-bg');
+			navigation.classList.add('d-none');
 		}
+	});
+
+	document.querySelectorAll('.btn-group-toggle label').forEach(function(label) {
+		label.addEventListener('click', function() {
+			document.querySelectorAll('.btn-group-toggle label').forEach(function(btn) {
+				btn.classList.remove('active');
+			});
+			label.classList.add('active');
+		});
 	});
 
 	// ----------------------------------------

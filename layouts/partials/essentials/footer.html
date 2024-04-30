@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h2 class="section-title">Contact Info</h2>
+        <h2 class="section-title">Get in Touch</h2>
       </div>
       <div class="col-lg-8 mx-auto">
         <div class="bg-white rounded text-center p-5 shadow-down">
@@ -31,10 +31,10 @@
 <!-- /contact -->
 
 <!-- footer -->
-<footer class="bg-dark footer-section">
+<footer class="bg-primary footer-section">
   <div class="section">
     <div class="container">
-      <div class="row">
+      <div class="row text-center">
         <div class="col-md-4">
           <h4 class="h5 text-light">Email</h4>
           <p class="fs-6 font-secondary"><a class="text-white"
@@ -46,9 +46,12 @@
               href="tel:{{site.Params.contact_info.mobile}}">{{site.Params.contact_info.mobile}}</a></p>
         </div>
         <div class="col-md-4">
-          <h4 class="h5 text-light">Address</h4>
-          <p class="text-white fs-6 font-secondary">{{site.Params.contact_info.address}}</p>
+          <h4 class="h5 text-light">Links</h4>
+          {{ range site.Params.media_links }}
+          <a href="{{.URL}}" class="text-white font-secondary">{{.display}}</a> <br><br>
+          {{end}}
         </div>
+  
       </div>
     </div>
   </div>
@@ -57,8 +60,8 @@
     <p class="copright text-white-50">
       {{ site.Params.copyright | markdownify }}
       {{ if site.Params.theme_copyright }}
-      | Theme by
-      <a class="text-light" target="_blank" rel="noopener noreferrer" href="https://gethugothemes.com/">GetHugoThemes</a>
+      | Developed By
+      <a class="text-light" target="_blank" rel="noopener noreferrer" href="http://resume.abhijitpachpande.co.in/">Abhijit Pachpande</a>
       {{ end }}
     </p>
   </div>

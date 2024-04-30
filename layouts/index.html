@@ -1,53 +1,92 @@
 {{ define "main" }}
 
-{{ with .Params.banner }}
-<!-- hero area -->
-<section class="hero-area bg-primary overflow-hidden" id="parallax">
+
+
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="btn-group btn-group-toggle justify-content-center d-flex flex-wrap" data-bs-toggle="buttons">
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" class="d-none" value="all" checked="checked" />All
+          </label>
+          {{ $categories := slice }}
+          {{ range .RegularPages }}
+          {{ range .Params.categories }}
+          {{ $categories = $categories | append . }}
+          {{ end }}
+          {{ end }}
+          {{ range ( $categories | uniq ) }}
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" class="d-none" value="{{ . | urlize }}" />{{ . | humanize }}
+          </label>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+      {{ range .RegularPages }}
+      <div class="col-lg-4 col-6 mb-4 shuffle-item"
+        data-groups="[{{range $index, $element:= .Params.categories }}{{if ne $index 0}},{{end}}&quot;{{. | urlize}}&quot;{{ end }}]">
+        <div class="position-relative rounded hover-wrapper"> 
+          {{ partial "image.html" (dict "Src" .Params.image "Alt" "portfolio-image"  "Class" `rounded w-100 d-block`) }}
+          <div class="hover-overlay">
+            <div class="hover-content">
+              <a class="btn btn-light btn-sm" href="{{ .Permalink | safeURL }}">view project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- /portfolio -->
+
+
+
+{{ if .Params.testimonial.enable }}
+{{ with .Params.testimonial }}
+<!-- testimonial -->
+<section class="section bg-primary position-relative testimonial-bg-shapes">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h1 class="text-white font-secondary">{{ .title | safeHTML }}</h1>
+      <div class="col-12 text-center">
+        <h2 class="section-title text-white mb-5">{{ .title | markdownify }}</h2>
+      </div>
+      <div class="col-lg-10 mx-auto swiper testimonial-slider">
+        <div class="swiper-wrapper">
+          {{ range .item }}
+          <div class="swiper-slide">
+            <div class="text-center testimonial-content">
+              <!-- <i class="ti-quote-right text-white icon mb-4 d-inline-block"></i> -->
+              <p class="text-white mb-4">{{.content | markdownify}}</p>
+              {{ partial "image.html" (dict "Src" .image "Alt" "client-image" "Class" `rounded-circle mb-4
+              d-inline-block`)
+              }}
+              <h3 class="h5 text-white">{{.name }}</h3>
+              <span class="fs-6 text-secondary d-block text-light mb-4 designation">{{ .designation }}</span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>
-  <div class="layer-bg w-100">
-    {{ partial "image.html" (dict "Src" "images/illustrations/leaf-bg.png" "Alt" "bg-shape" "Class" `w-100`) }}
-  </div>
-  <div class="layer" id="l2">
-    <img src="{{`images/illustrations/dots-cyan.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l3">
-    <img src="{{`images/illustrations/leaf-orange.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l4">
-    <img src="{{`images/illustrations/dots-orange.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l5">
-    <img src="{{`images/illustrations/leaf-yellow.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l6">
-    <img src="{{`images/illustrations/leaf-cyan.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l7">
-    <img src="{{`images/illustrations/dots-group-orange.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l8">
-    <img src="{{`images/illustrations/leaf-pink-round.svg` | relURL}}" alt="bg-shape">
-  </div>
-  <div class="layer" id="l9">
-    <img src="{{`images/illustrations/leaf-cyan-2.svg` | relURL}}" alt="bg-shape">
-  </div>
-
-  <!-- social icon -->
-  <ul class="social-icon list-unstyled ms-3 ms-sm-5 mt-3 position-relative zindex-1">
-    {{ range site.Params.social }}
-    <li class="mb-3"><a class="text-white" href="{{.link | safeURL }}"><i class="{{.icon}}"></i><span class="visually-hidden">{{.title}}</span></a></li>
-    {{ end }}
-  </ul>
-  <!-- /social icon -->
+  <!-- bg shapes -->
+  {{ partial "image.html" (dict "Src" "images/backgrounds/map.png" "Alt" "map" "Class" `bg-map`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-v.svg" "Alt" "map" "Class" `bg-shape-1`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-orange.svg" "Alt" "map" "Class" `bg-shape-2`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-sm.svg" "Alt" "map" "Class" `bg-shape-3`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-pink-round.svg" "Alt" "map" "Class" `bg-shape-4`) }}
+  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-cyan.svg" "Alt" "map" "Class" `bg-shape-5`) }}
 </section>
-<!-- /hero area -->
+<!-- /testimonial -->
 {{ end }}
+{{ end }}
+
+
 
 {{ if .Params.about.enable }}
 <!-- about -->
@@ -184,78 +223,7 @@
 {{ end }}
 {{ end }}
 
-
-{{ if .Params.portfolio.enable }}
 <!-- portfolio -->
-<section class="section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 text-center">
-        <h2 class="section-title">{{ .Params.portfolio.title | markdownify }}</h2>
-      </div>
-    </div>
-    <div class="row shuffle-wrapper">
-      {{ $item:= .Params.portfolio.item_show }}
-      {{ range first $item (where .Site.RegularPages "Section" "portfolio") }}
-      <div class="col-lg-4 col-6 mb-4 shuffle-item">
-        <div class="position-relative rounded hover-wrapper">
-          {{ partial "image.html" (dict "Src" .Params.image "Alt" "portfolio-image" "Class" `rounded w-100 d-block`)
-          }}
-          <div class="hover-overlay">
-            <div class="hover-content">
-              <a class="btn btn-light btn-sm" href="{{ .Permalink | safeURL }}">view project</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-<!-- /portfolio -->
-{{ end }}
-
-
-{{ if .Params.testimonial.enable }}
-{{ with .Params.testimonial }}
-<!-- testimonial -->
-<section class="section bg-primary position-relative testimonial-bg-shapes">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="section-title text-white mb-5">{{ .title | markdownify }}</h2>
-      </div>
-      <div class="col-lg-10 mx-auto swiper testimonial-slider">
-        <div class="swiper-wrapper">
-          {{ range .item }}
-          <div class="swiper-slide">
-            <div class="text-center testimonial-content">
-              <i class="ti-quote-right text-white icon mb-4 d-inline-block"></i>
-              <p class="text-white mb-4">{{.content | markdownify}}</p>
-              {{ partial "image.html" (dict "Src" .image "Alt" "client-image" "Class" `rounded-circle mb-4
-              d-inline-block`)
-              }}
-              <h3 class="h5 text-white">{{.name }}</h3>
-              <span class="fs-6 text-secondary d-block text-light mb-4 designation">{{ .designation }}</span>
-            </div>
-          </div>
-          {{ end }}
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </div>
-  <!-- bg shapes -->
-  {{ partial "image.html" (dict "Src" "images/backgrounds/map.png" "Alt" "map" "Class" `bg-map`) }}
-  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-v.svg" "Alt" "map" "Class" `bg-shape-1`) }}
-  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-orange.svg" "Alt" "map" "Class" `bg-shape-2`) }}
-  {{ partial "image.html" (dict "Src" "images/illustrations/dots-group-sm.svg" "Alt" "map" "Class" `bg-shape-3`) }}
-  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-pink-round.svg" "Alt" "map" "Class" `bg-shape-4`) }}
-  {{ partial "image.html" (dict "Src" "images/illustrations/leaf-cyan.svg" "Alt" "map" "Class" `bg-shape-5`) }}
-</section>
-<!-- /testimonial -->
-{{ end }}
-{{ end }}
 
 
 {{ if .Params.clients_logo_slider.enable }}
